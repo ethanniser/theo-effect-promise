@@ -5,19 +5,10 @@ class IsFourError {
   readonly _tag = "IsFourError";
 }
 
-function waitFor(i: number) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      console.log(i);
-      resolve(i);
-    }, 1000);
-  });
-}
-
 function actualWork(i: number) {
   return Effect.if(i === 4, {
-    onTrue: Effect.promise(() => waitFor(i)),
-    onFalse: Effect.fail(new IsFourError()),
+    onTrue: Effect.fail(new IsFourError()),
+    onFalse: Effect.promise(() => Promise.resolve(i)),
   });
 }
 
