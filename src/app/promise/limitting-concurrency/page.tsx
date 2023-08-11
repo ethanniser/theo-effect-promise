@@ -102,7 +102,7 @@ export default function Home() {
   return (
     <>
       <button
-        className="text-4xl font-bold"
+        className="text-4xl font-bold cursor-pointer hover:underline"
         onClick={() => MAIN_SETTLED_WITH_LIMIT(limit)}
       >
         Run With Promise.allSettled (collects errors)

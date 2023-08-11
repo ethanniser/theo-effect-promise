@@ -47,7 +47,10 @@ const MAIN = async () => {
 
 export default function Home() {
   return (
-    <button className="text-4xl font-bold" onClick={MAIN}>
+    <button
+      className="text-4xl font-bold cursor-pointer hover:underline"
+      onClick={MAIN}
+    >
       Run With Traditional Interruption
     </button>
   );

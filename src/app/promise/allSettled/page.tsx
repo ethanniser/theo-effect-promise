@@ -59,7 +59,10 @@ async function MAIN_SETTLED() {
 
 export default function Home() {
   return (
-    <button className="text-4xl font-bold" onClick={MAIN_SETTLED}>
+    <button
+      className="text-4xl font-bold cursor-pointer hover:underline"
+      onClick={MAIN_SETTLED}
+    >
       Run With Promise.allSettled (collects errors)
     </button>
   );
