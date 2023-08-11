@@ -50,6 +50,8 @@ function WORK_EFFECT(i: number) {
 // });
 
 const MAIN_EFFECT_EITHER = Effect.gen(function* (_) {
+  yield* _(Effect.log("MAIN_EFFECT: running"));
+
   const effects = [1, 2, 3, 4, 5].map((x) => WORK_EFFECT(x));
   const eithers = effects.map((x) => Effect.either(x));
   const results = yield* _(Effect.all(eithers, { concurrency: "unbounded" }));

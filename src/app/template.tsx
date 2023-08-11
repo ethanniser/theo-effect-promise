@@ -37,6 +37,15 @@ export default function RootTemplate({
                 Solution
               </p>
             </Link>
+            <div className="text-xl font-semibold text-blue-700">
+              Limitting <br />
+              Concurrency
+            </div>
+            <Link href="/promise/limitting-concurrency/factory-ew">
+              <p className="text-lg cursor-pointer hover:text-blue-500">
+                Factory (ew)
+              </p>
+            </Link>
           </div>
           <div className="bg-green-100 p-6 rounded-lg">
             <div className="text-2xl font-bold text-green-700">Effect</div>
@@ -59,6 +68,15 @@ export default function RootTemplate({
             <Link href="/effect/interruption/solution">
               <p className="text-lg cursor-pointer hover:text-green-500">
                 Solution
+              </p>
+            </Link>
+            <div className="text-xl font-semibold text-green-700">
+              Limitting <br />
+              Concurrency
+            </div>
+            <Link href="/effect/limitting-concurrency/its-easy">
+              <p className="text-lg cursor-pointer hover:text-green-500">
+                {"It's Easy"}
               </p>
             </Link>
           </div>
