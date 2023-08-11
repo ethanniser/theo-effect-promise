@@ -36,11 +36,48 @@ async function WORK(i: number) {
 //   }
 // }
 
-async function MAIN_SETTLED(limit: number) {
+async function asyncQueue<T>(
+  tasks: (() => Promise<T>)[],
+  limit: number
+): Promise<(PromiseFulfilledResult<T> | PromiseRejectedResult)[]> {
+  const results: (PromiseFulfilledResult<T> | PromiseRejectedResult)[] = [];
+
+  const runTask = async (task: () => Promise<T>, index: number) => {
+    try {
+      const value = await task();
+      results[index] = { status: "fulfilled", value };
+    } catch (reason) {
+      results[index] = { status: "rejected", reason };
+    }
+  };
+
+  const runningTasks: Promise<void>[] = [];
+  for (let i = 0; i < Math.min(limit, tasks.length); i++) {
+    runningTasks.push(runTask(tasks[i], i));
+  }
+
+  let nextTaskIndex = limit;
+
+  while (runningTasks.length > 0) {
+    const completedTaskIndex = await Promise.race(
+      runningTasks.map((t, idx) => t.then(() => idx))
+    );
+    runningTasks.splice(completedTaskIndex, 1);
+
+    if (nextTaskIndex < tasks.length) {
+      runningTasks.push(runTask(tasks[nextTaskIndex], nextTaskIndex));
+      nextTaskIndex++;
+    }
+  }
+
+  return results;
+}
+
+async function MAIN_SETTLED_WITH_LIMIT(limit: number) {
   try {
     console.log(`MAIN_EFFECT: running - (with concurrency limit: ${limit})`);
-    const promises = [1, 2, 3, 4, 5].map((i) => WORK(i));
-    const results = await Promise.allSettled(promises);
+    const promises = [1, 2, 3, 4, 5].map((i) => () => WORK(i));
+    const results = await asyncQueue(promises, limit);
 
     const errors = results
       .filter((r): r is PromiseRejectedResult => r.status === "rejected")
@@ -66,7 +103,7 @@ export default function Home() {
     <>
       <button
         className="text-4xl font-bold"
-        onClick={() => MAIN_SETTLED(limit)}
+        onClick={() => MAIN_SETTLED_WITH_LIMIT(limit)}
       >
         Run With Promise.allSettled (collects errors)
       </button>

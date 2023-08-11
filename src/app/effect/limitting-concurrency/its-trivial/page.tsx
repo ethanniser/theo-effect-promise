@@ -50,7 +50,7 @@ function WORK_EFFECT(i: number) {
 //   yield* _(Effect.log(`We got results: ${results}`));
 // });
 
-const MAIN_EFFECT_EITHER = (limit: number) =>
+const MAIN_EFFECT_EITHER_WITH_LIMIT = (limit: number) =>
   Effect.gen(function* (_) {
     yield* _(
       Effect.log(`MAIN_EFFECT: running - (with concurrency limit: ${limit})`)
@@ -66,14 +66,18 @@ const MAIN_EFFECT_EITHER = (limit: number) =>
     yield* _(Effect.sync(() => console.log("We got errors:", errors)));
   });
 
-const MAIN = (limit: number) => Effect.runPromise(MAIN_EFFECT_EITHER(limit));
+const MAIN_WITH_LIMIT = (limit: number) =>
+  Effect.runPromise(MAIN_EFFECT_EITHER_WITH_LIMIT(limit));
 
 export default function Home() {
   const [limit, setLimit] = useState(2);
 
   return (
     <>
-      <button className="text-4xl font-bold" onClick={() => MAIN(limit)}>
+      <button
+        className="text-4xl font-bold"
+        onClick={() => MAIN_WITH_LIMIT(limit)}
+      >
         Run With Effect.all + Effect.either (collects errors)
       </button>
       <h3 className="text-2xl font-bold underline">

@@ -9,13 +9,15 @@ export default function RootTemplate({
 }) {
   return (
     <div className="flex flex-col h-screen bg-gray-100">
-      <div className="flex flex-col items-center justify-center space-y-10">
+      <div className="flex flex-col items-center justify-center">
         <Link href="/">
           <h1 className="text-4xl font-bold mb-2">Home</h1>
         </Link>
         <div className="grid grid-cols-2 gap-6 text-center">
           <div className="bg-blue-100 p-6 rounded-lg">
-            <div className="text-2xl font-bold text-blue-700">Promise</div>
+            <div className="text-2xl font-bold text-blue-700 underline">
+              Promise
+            </div>
             <Link href="/promise/all">
               <p className="text-xl cursor-pointer hover:text-blue-500">All</p>
             </Link>
@@ -24,7 +26,7 @@ export default function RootTemplate({
                 AllSettled
               </p>
             </Link>
-            <div className="text-xl font-semibold text-blue-700">
+            <div className="text-xl font-semibold text-blue-700 underline">
               Interruption
             </div>
             <Link href="/promise/interruption/problem">
@@ -37,18 +39,20 @@ export default function RootTemplate({
                 Solution
               </p>
             </Link>
-            <div className="text-xl font-semibold text-blue-700">
+            <div className="text-xl font-semibold text-blue-700 underline">
               Limitting <br />
               Concurrency
             </div>
-            <Link href="/promise/limitting-concurrency/factory-ew">
+            <Link href="/promise/limitting-concurrency/async-queue">
               <p className="text-lg cursor-pointer hover:text-blue-500">
-                Factory (ew)
+                Async Queue
               </p>
             </Link>
           </div>
           <div className="bg-green-100 p-6 rounded-lg">
-            <div className="text-2xl font-bold text-green-700">Effect</div>
+            <div className="text-2xl font-bold text-green-700 underline">
+              Effect
+            </div>
             <Link href="/effect/all">
               <p className="text-xl cursor-pointer hover:text-green-500">All</p>
             </Link>
@@ -57,7 +61,7 @@ export default function RootTemplate({
                 Either
               </p>
             </Link>
-            <div className="text-xl font-semibold text-green-700">
+            <div className="text-xl font-semibold text-green-700 underline">
               Interruption
             </div>
             <Link href="/effect/interruption/problem">
@@ -70,13 +74,13 @@ export default function RootTemplate({
                 Solution
               </p>
             </Link>
-            <div className="text-xl font-semibold text-green-700">
+            <div className="text-xl font-semibold text-green-700 underline">
               Limitting <br />
               Concurrency
             </div>
-            <Link href="/effect/limitting-concurrency/its-easy">
+            <Link href="/effect/limitting-concurrency/its-trivial">
               <p className="text-lg cursor-pointer hover:text-green-500">
-                {"It's Easy"}
+                {"It's Trivial"}
               </p>
             </Link>
           </div>
