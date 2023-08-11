@@ -56,9 +56,9 @@ export default function RootTemplate({
             <Link href="/effect/all">
               <p className="text-xl cursor-pointer hover:text-green-500">All</p>
             </Link>
-            <Link href="/effect/either">
+            <Link href="/effect/all-either">
               <p className="text-xl cursor-pointer hover:text-green-500">
-                Either
+                All + Either
               </p>
             </Link>
             <div className="text-xl font-semibold text-green-700 underline">
