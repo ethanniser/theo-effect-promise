@@ -24,6 +24,19 @@ export default function RootTemplate({
                 AllSettled
               </p>
             </Link>
+            <div className="text-xl font-semibold text-blue-700">
+              Interruption
+            </div>
+            <Link href="/promise/interruption/problem">
+              <p className="text-lg cursor-pointer hover:text-blue-500">
+                Problem
+              </p>
+            </Link>
+            <Link href="/promise/interruption/solution">
+              <p className="text-lg cursor-pointer hover:text-blue-500">
+                Solution
+              </p>
+            </Link>
           </div>
           <div className="bg-green-100 p-6 rounded-lg">
             <div className="text-2xl font-bold text-green-700">Effect</div>

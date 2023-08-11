@@ -66,7 +66,7 @@ const MAIN = () => Effect.runPromise(MAIN_EFFECT_EITHER);
 export default function Home() {
   return (
     <button className="text-4xl font-bold" onClick={MAIN}>
-      Run With Effect.all and Either
+      Run With Effect.all + Effect.either (collects errors)
     </button>
   );
 }

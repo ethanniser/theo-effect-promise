@@ -3,7 +3,7 @@
 import { Effect, Either, pipe } from "effect";
 
 async function waitForABORTABLE(i: number, abortSignal: AbortSignal) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const timeout = setTimeout(() => {
       console.log("waitFor: resolved:", i);
       resolve(i);
@@ -12,13 +12,17 @@ async function waitForABORTABLE(i: number, abortSignal: AbortSignal) {
     abortSignal.addEventListener("abort", () => {
       clearTimeout(timeout);
       console.log("waitFor: aborted", i);
-      resolve("waitFor: aborted");
+      reject("waitFor: aborted");
     });
   });
 }
 
 class FourError {
   readonly _tag = "FourError";
+}
+
+class WaitForError {
+  readonly _tag = "WaitForError";
 }
 
 function WORK_EFFECT(i: number) {
@@ -29,7 +33,12 @@ function WORK_EFFECT(i: number) {
       return yield* _(Effect.fail(new FourError()));
     }
 
-    yield* _(Effect.promise((signal) => waitForABORTABLE(i, signal)));
+    yield* _(
+      Effect.tryPromise({
+        try: (signal) => waitForABORTABLE(i, signal),
+        catch: (_error) => new WaitForError(),
+      })
+    );
     yield* _(Effect.log(`WORK_EFFECT: resolved: ${i}`));
 
     return i ** 2;

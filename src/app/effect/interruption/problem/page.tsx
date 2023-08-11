@@ -62,7 +62,7 @@ export default function Home() {
   return (
     <>
       <button className="text-4xl font-bold" onClick={MAIN}>
-        Run With Effect.all (short circuit)
+        Run With Effect.all (short circuits)
       </button>
       <p>
         Even though the result is already short circuited, the timeouts never

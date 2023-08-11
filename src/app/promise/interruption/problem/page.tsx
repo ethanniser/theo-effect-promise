@@ -16,6 +16,7 @@ async function WORK(i: number) {
   }
 
   await waitFor(i);
+  // * THESE NEVER STOP
   console.log("WORK: resolved:", i);
 
   return i ** 2;
@@ -36,8 +37,14 @@ async function MAIN() {
 
 export default function Home() {
   return (
-    <button className="text-4xl font-bold" onClick={MAIN}>
-      Run With Promise.all (short circuits)
-    </button>
+    <>
+      <button className="text-4xl font-bold" onClick={MAIN}>
+        Run With Promise.all (short circuits)
+      </button>
+      <p>
+        Even though the result is already short circuited, the timeouts never
+        stop
+      </p>
+    </>
   );
 }
