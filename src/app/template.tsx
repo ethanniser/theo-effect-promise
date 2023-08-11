@@ -43,7 +43,7 @@ export default function RootTemplate({
               Limitting <br />
               Concurrency
             </div>
-            <Link href="/promise/limitting-concurrency/async-queue">
+            <Link href="/promise/limitting-concurrency">
               <p className="text-lg cursor-pointer hover:text-blue-500">
                 Async Queue
               </p>
@@ -78,7 +78,7 @@ export default function RootTemplate({
               Limitting <br />
               Concurrency
             </div>
-            <Link href="/effect/limitting-concurrency/its-trivial">
+            <Link href="/effect/limitting-concurrency">
               <p className="text-lg cursor-pointer hover:text-green-500">
                 {"It's Trivial"}
               </p>
