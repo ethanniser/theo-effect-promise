@@ -36,10 +36,8 @@ async function MAIN() {
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="p-10 flex flex-col gap-2 test-2xl font-bold">
-        <button onClick={MAIN}>Run With Promise.all</button>
-      </div>
-    </main>
+    <button className="text-4xl font-bold" onClick={MAIN}>
+      Run With Promise.all
+    </button>
   );
 }

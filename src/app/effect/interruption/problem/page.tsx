@@ -5,6 +5,7 @@ import { Effect, Either, pipe } from "effect";
 async function waitFor(i: number) {
   return new Promise((resolve) => {
     setTimeout(() => {
+      // * THESE NEVER STOP
       console.log("waitFor: resolved:", i);
       resolve(i);
     }, 1000 * i);
@@ -15,18 +16,18 @@ class FourError {
   readonly _tag = "FourError";
 }
 
-async function WORK(i: number) {
-  console.log("WORK: running for:", i);
+// async function WORK(i: number) {
+//   console.log("WORK: running for:", i);
 
-  if (i === 4) {
-    throw "WORK: 4 sucks tbh";
-  }
+//   if (i === 4) {
+//     throw "WORK: 4 sucks tbh";
+//   }
 
-  await waitFor(i);
-  console.log("WORK: resolved:", i);
+//   await waitFor(i);
+//   console.log("WORK: resolved:", i);
 
-  return i ** 2;
-}
+//   return i ** 2;
+// }
 
 function WORK_EFFECT(i: number) {
   return Effect.gen(function* (_) {
@@ -59,10 +60,14 @@ const MAIN = () =>
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="p-10 flex flex-col gap-2 test-2xl font-bold">
-        <button onClick={MAIN}>{"Run With Effect.all (short curcuit)"}</button>
-      </div>
-    </main>
+    <>
+      <button className="text-4xl font-bold" onClick={MAIN}>
+        Run With Effect.all (short circuit)
+      </button>
+      <p>
+        Even though the result is already short circuited, the timeouts never
+        stop
+      </p>
+    </>
   );
 }

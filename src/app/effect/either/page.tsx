@@ -14,18 +14,18 @@ class FourError {
   readonly _tag = "FourError";
 }
 
-async function WORK(i: number) {
-  console.log("WORK: running for:", i);
+// async function WORK(i: number) {
+//   console.log("WORK: running for:", i);
 
-  if (i === 4) {
-    throw "WORK: 4 sucks tbh";
-  }
+//   if (i === 4) {
+//     throw "WORK: 4 sucks tbh";
+//   }
 
-  await waitFor(i);
-  console.log("WORK: resolved:", i);
+//   await waitFor(i);
+//   console.log("WORK: resolved:", i);
 
-  return i ** 2;
-}
+//   return i ** 2;
+// }
 
 function WORK_EFFECT(i: number) {
   return Effect.gen(function* (_) {
@@ -41,6 +41,13 @@ function WORK_EFFECT(i: number) {
     return i ** 2;
   });
 }
+
+// const MAIN_EFFECT = Effect.gen(function* (_) {
+//   const effects = [1, 2, 3, 4, 5].map((x) => WORK_EFFECT(x));
+//   const results = yield* _(Effect.all(effects, { concurrency: "unbounded" }));
+
+//   yield* _(Effect.log(`We got results: ${results}`));
+// });
 
 const MAIN_EFFECT_EITHER = Effect.gen(function* (_) {
   const effects = [1, 2, 3, 4, 5].map((x) => WORK_EFFECT(x));
@@ -58,10 +65,8 @@ const MAIN = () => Effect.runPromise(MAIN_EFFECT_EITHER);
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="p-10 flex flex-col gap-2 test-2xl font-bold">
-        <button onClick={MAIN}>{"Run With Effect.all and Either"}</button>
-      </div>
-    </main>
+    <button className="text-4xl font-bold" onClick={MAIN}>
+      Run With Effect.all and Either
+    </button>
   );
 }

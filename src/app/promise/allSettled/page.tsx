@@ -21,18 +21,18 @@ async function WORK(i: number) {
   return i ** 2;
 }
 
-async function MAIN() {
-  try {
-    console.log("MAIN: running");
-    const promises = [1, 2, 3, 4, 5].map((i) => WORK(i));
-    const results = await Promise.all(promises);
+// async function MAIN() {
+//   try {
+//     console.log("MAIN: running");
+//     const promises = [1, 2, 3, 4, 5].map((i) => WORK(i));
+//     const results = await Promise.all(promises);
 
-    console.log("MAIN: We got results:", results);
-  } catch (e) {
-    console.log("MAIN: failed for reason: ", e);
-    return e;
-  }
-}
+//     console.log("MAIN: We got results:", results);
+//   } catch (e) {
+//     console.log("MAIN: failed for reason: ", e);
+//     return e;
+//   }
+// }
 
 async function MAIN_SETTLED() {
   try {
@@ -59,11 +59,8 @@ async function MAIN_SETTLED() {
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="p-10 flex flex-col gap-2 test-2xl font-bold">
-        <button onClick={MAIN}>Run With Promise.all</button>
-        <button onClick={MAIN_SETTLED}>Run With Promise.allSettled</button>
-      </div>
-    </main>
+    <button className="text-4xl font-bold" onClick={MAIN_SETTLED}>
+      Run With Promise.allSettled
+    </button>
   );
 }
