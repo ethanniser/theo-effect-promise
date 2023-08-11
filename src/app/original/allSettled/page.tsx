@@ -49,7 +49,7 @@ async function MAIN_SETTLED() {
       )
       .map((r) => r.value);
 
-    console.log("MAIN_SETTLED: We got results:", results);
+    console.log("MAIN_SETTLED: We got successes:", successes);
     console.log("MAIN_SETTLED: We got errors:", errors);
   } catch (e) {
     console.log("MAIN_SETTLED: failed for reason: ", e);
