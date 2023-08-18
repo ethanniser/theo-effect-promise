@@ -1,6 +1,6 @@
 "use client";
 
-import { Effect, Either, pipe } from "effect";
+import { Effect } from "effect";
 
 async function waitForABORTABLE(i: number, abortSignal: AbortSignal) {
   return new Promise((resolve, reject) => {

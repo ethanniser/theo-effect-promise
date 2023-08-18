@@ -1,6 +1,6 @@
 "use client";
 
-import { Effect, Either, pipe } from "effect";
+import { Effect, Either } from "effect";
 import { useState } from "react";
 
 async function waitFor(i: number) {

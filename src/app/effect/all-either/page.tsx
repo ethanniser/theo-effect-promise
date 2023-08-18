@@ -1,6 +1,6 @@
 "use client";
 
-import { Effect, Either, pipe } from "effect";
+import { Effect, Either } from "effect";
 
 async function waitFor(i: number) {
   return new Promise((resolve) => {

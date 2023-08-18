@@ -1,7 +1,7 @@
 "use client";
 
 async function waitFor(i: number) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(i);
     }, 1000 * i);
