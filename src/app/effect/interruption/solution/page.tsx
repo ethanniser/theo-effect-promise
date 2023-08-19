@@ -2,6 +2,16 @@
 
 import { Effect } from "effect";
 
+// async function waitFor(i: number) {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       // * THESE NEVER STOP
+//       console.log("waitFor: resolved:", i);
+//       resolve(i);
+//     }, 1000 * i);
+//   });
+// }
+
 async function waitForABORTABLE(i: number, abortSignal: AbortSignal) {
   return new Promise((resolve, reject) => {
     const timeout = setTimeout(() => {
@@ -24,6 +34,21 @@ class FourError {
 class WaitForError {
   readonly _tag = "WaitForError";
 }
+
+// function WORK_EFFECT(i: number) {
+//   return Effect.gen(function* (_) {
+//     yield* _(Effect.log(`WORK_EFFECT: running for: ${i}`));
+
+//     if (i === 4) {
+//       return yield* _(Effect.fail(new FourError()));
+//     }
+
+//     yield* _(Effect.promise(() => waitFor(i)));
+//     yield* _(Effect.log(`WORK_EFFECT: resolved: ${i}`));
+
+//     return i ** 2;
+//   });
+// }
 
 function WORK_EFFECT(i: number) {
   return Effect.gen(function* (_) {

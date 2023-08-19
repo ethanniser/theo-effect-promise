@@ -42,16 +42,31 @@ function WORK_EFFECT(i: number) {
   });
 }
 
-// const MAIN_EFFECT = Effect.gen(function* (_) {
-//   const effects = [1, 2, 3, 4, 5].map((x) => WORK_EFFECT(x));
-//   const results = yield* _(Effect.all(effects, { concurrency: "unbounded" }));
+// async function MAIN_SETTLED() {
+//   try {
+//     console.log("MAIN_SETTLED: running");
+//     const promises = [1, 2, 3, 4, 5].map((i) => WORK(i));
+//     const results = await Promise.allSettled(promises);
 
-//   yield* _(Effect.log(`We got results: ${results}`));
-// });
+//     const errors = results
+//       .filter((r): r is PromiseRejectedResult => r.status === "rejected")
+//       .map((r) => r.reason);
+//     const successes = results
+//       .filter(
+//         (r): r is PromiseFulfilledResult<number> => r.status === "fulfilled"
+//       )
+//       .map((r) => r.value);
+
+//     console.log("MAIN_SETTLED: We got successes:", successes);
+//     console.log("MAIN_SETTLED: We got errors:", errors);
+//   } catch (e) {
+//     console.log("MAIN_SETTLED: failed for reason: ", e);
+//     return e;
+//   }
+// }
 
 const MAIN_EFFECT_EITHER = Effect.gen(function* (_) {
   yield* _(Effect.log("MAIN_EFFECT: running"));
-
   const effects = [1, 2, 3, 4, 5].map((x) => WORK_EFFECT(x));
   const eithers = effects.map((x) => Effect.either(x));
   const results = yield* _(Effect.all(eithers, { concurrency: "unbounded" }));

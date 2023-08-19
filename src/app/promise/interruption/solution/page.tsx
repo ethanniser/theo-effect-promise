@@ -1,5 +1,13 @@
 "use client";
 
+// async function waitFor(i: number) {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve(i);
+//     }, 1000 * i);
+//   });
+// }
+
 async function waitForABORTABLE(i: number, abortSignal: AbortSignal) {
   return new Promise((resolve, reject) => {
     const timeout = setTimeout(() => {
@@ -14,6 +22,20 @@ async function waitForABORTABLE(i: number, abortSignal: AbortSignal) {
     });
   });
 }
+
+// async function WORK(i: number) {
+//   console.log("WORK: running for:", i);
+
+//   if (i === 4) {
+//     throw "WORK: 4 sucks tbh";
+//   }
+
+//   await waitFor(i);
+//   // * THESE NEVER STOP
+//   console.log("WORK: resolved:", i);
+
+//   return i ** 2;
+// }
 
 const WORK_ABORTABLE = async (i: number, signal: AbortSignal) => {
   console.log("WORK: running for:", i);
