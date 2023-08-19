@@ -57,7 +57,6 @@ function WORK_EFFECT(i: number) {
 
 const MAIN_EFFECT = Effect.gen(function* (_) {
   yield* _(Effect.log("MAIN_EFFECT: running"));
-
   const effects = [1, 2, 3, 4, 5].map((x) => WORK_EFFECT(x));
   const results = yield* _(Effect.all(effects, { concurrency: "unbounded" }));
 
