@@ -1,3 +1,11 @@
+## [THEO'S VIDEO](https://www.youtube.com/watch?v=f2Z1v3cqgDI)
+
+## [MY 30 MIN EFFECT FOR BEGINNERS TUTORIAL](https://www.youtube.com/watch?v=fTN8BX5qj6s)
+
+## [EFFECT WEBSITE/DOCS](https://effect.website/)
+
+---
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
